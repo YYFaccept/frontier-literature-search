@@ -47,8 +47,6 @@ codex mcp login consensus
 
 Complete account sign-in and authorization in the browser, then confirm the tools are available in Codex; reopen the session if they have not loaded. The skill uses the connected tool's actual parameters and returned fields, and verifies publication status against original publication records. Consensus is optional. Other search tools remain usable without it, and installing this skill does not activate paid services.
 
-See the [connection guide](references/troubleshooting.md) for connection options and guidance for affected client versions.
-
 ## Usage examples
 
 ### Generate a search combination
