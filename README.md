@@ -1,42 +1,47 @@
 # 前沿文献检索 · Frontier Literature Search
 
-[English](README.en.md) · [技能指令](SKILL.md) · [检索模板](references/search-guide.md)
+**从一个研究问题，整理出有摘要依据、有正式出处、可以继续阅读的参考文献。**
 
-一个用于 Codex 的文献检索技能：优先用 Google Scholar 查找论文，结合公开摘要和 Consensus 等学术工具筛选相关研究，引用正式发表版本，整理核心参考与前沿线索。
+一个用于 Codex 的研究技能：优先使用 Google Scholar，结合官方论文集、公开摘要和可选的 Consensus，把关键词设计、相关性筛选与版本核对连起来。适合新方向摸底、追踪近期工作、准备组会和组织 Related Work。
 
-从一个研究问题出发，把关键词、顶会顶刊检索、摘要阅读和版本核对串起来，为选题、组会和 Related Work 准备有来源、能继续阅读的文献清单。
+[English](README.en.md) · [快速开始](#快速开始) · [使用方式](#三种使用方式) · [技能指令](SKILL.md) · [检索指南](references/search-guide.md)
 
-## 能做什么
+## 为什么使用它
 
-- 覆盖安全四大、AI、CV、其他重点会议及期刊，按单个场所生成简短查询并汇总去重。
-- 实际检索优先尝试 Google Scholar；结合已连接的 Consensus、官方论文集和其他搜索工具补检。
-- 阅读公开标题与摘要，按研究对象、问题和方法筛选，每篇说明与课题的具体关系。
-- 查询“近几个月”时默认最近三个月，明确起止日期；背景摸底则覆盖前两个年度及本年度。
-- 查找并优先引用正式发表版本，合并同一工作的预印本，保留方便阅读的链接。
-- 核心参考与前沿线索分列；预印本结合领域、论文年龄和可核实的引用影响选择。
-- 输出研究概述、分类结果和简短检索记录；按需准备 BibTeX 或 RIS。
-- 支持仅生成组合、仅分类已有文献；屏幕控制为可选操作方式，单个入口受阻时继续换源检索。
+- **按研究问题筛选**：阅读摘要，说明每篇论文与课题的具体关系，区分风险评测、攻击方法与防护方法。
+- **正式版本优先**：找到出版记录后采用正式题名、年份和场所，同一工作的 arXiv 与正式版本合并为一条。
+- **核心参考与前沿线索分开**：既为 Related Work 准备稳定的参考，也保留刚公开、引用尚少的新研究。
+- **让检索可以继续**：输出原始链接、分类和阅读范围，按需提供 Zotero 可导入的 BibTeX 或 RIS。
 
-这是一个以说明文件组成的技能。实际检索需要 Codex 环境提供搜索工具；仓库本身不提供论文数据库或搜索服务。技能指令以中文编写，可以要求用英文输出。
+## 快速开始
 
-## 安装
-
-在 Codex 中使用内置安装器：
+**1. 在 Codex 中安装：**
 
 ```text
 $skill-installer 请从 https://github.com/YYFaccept/frontier-literature-search 安装仓库根目录中的 frontier-literature-search 技能。
 ```
 
-也可以手动安装。按当前 [OpenAI 官方文档](https://learn.chatgpt.com/docs/build-skills)，个人技能目录为 `~/.agents/skills`，项目技能目录为 `.agents/skills`。已有同名技能时更新现有安装，避免在多个目录重复安装；自定义环境以其实际技能目录为准。
+**2. 给出一个研究问题：**
 
-**macOS / Linux：**
+```text
+使用 $frontier-literature-search 检索最近三个月视觉语言模型隐私泄露与保护的论文，重点关注安全四大及 AI、CV 相关会议。优先实际使用 Google Scholar，结合已连接的 Consensus 和官方论文集，阅读摘要筛选相关工作，优先引用正式版本。输出研究概述、核心参考、前沿线索和简短检索记录。
+```
+
+安装后可用 `$frontier-literature-search` 显式调用，也支持 Codex 根据请求自动选择。主题、时间范围、目标场所和输出语言都可以直接在请求中指定。实际搜索使用当前 Codex 环境提供的工具；Consensus 为可选入口。
+
+<details>
+<summary>手动安装（macOS / Linux / Windows）</summary>
+
+按 [Codex 技能安装文档](https://learn.chatgpt.com/docs/build-skills)，可将仓库放入个人技能目录 `~/.agents/skills`，或项目目录 `.agents/skills`。已有同名技能时更新现有安装；自定义环境使用其实际技能目录，避免重复安装。
+
+macOS / Linux：
 
 ```sh
 mkdir -p "$HOME/.agents/skills"
 git clone https://github.com/YYFaccept/frontier-literature-search.git "$HOME/.agents/skills/frontier-literature-search"
 ```
 
-**Windows PowerShell：**
+Windows PowerShell：
 
 ```powershell
 $skillsDir = Join-Path $HOME '.agents/skills'
@@ -44,7 +49,76 @@ New-Item -ItemType Directory -Force -Path $skillsDir | Out-Null
 git clone https://github.com/YYFaccept/frontier-literature-search.git (Join-Path $skillsDir 'frontier-literature-search')
 ```
 
-安装后使用 `$frontier-literature-search` 调用。Codex 也可根据请求自动选择该技能；如果新安装没有出现，重启 Codex。
+如果新安装尚未出现在 Codex 中，重启后再调用。
+
+</details>
+
+## 三种使用方式
+
+| 模式 | 适合的任务 | 交付内容 |
+| --- | --- | --- |
+| 实际检索 | 新方向摸底、近期论文、顶会顶刊补检 | 研究概述、筛选后的文献、来源及检索记录 |
+| 仅生成查询 | 自己在 Scholar 或其他搜索工具中检索 | 短查询、单场所条件、时间范围与实验组合 |
+| 仅整理已有文献 | 整理收藏、准备组会、组织 Related Work | 分类索引、正式版本核对与重复条目合并 |
+
+**只生成组合，不执行检索：**
+
+```text
+$frontier-literature-search 为“多模态大模型隐私泄露”生成安全四大与 AI 三大会的检索组合，分别给出 Scholar 和普通联网搜索版本，不执行检索。
+```
+
+**只整理现有论文：**
+
+```text
+$frontier-literature-search 仅整理我提供的论文列表，按技术路线分类，核对发表状态并合并预印本与正式版本，不扩展新论文检索。
+```
+
+仅生成查询时无需联网或打开浏览器。实际检索优先尝试 Scholar；屏幕控制是可用方式，明确要求本地页面时会实际操作该页面并记录执行状态。
+
+<details>
+<summary>复制完整研究 Prompt</summary>
+
+```text
+使用 $frontier-literature-search 检索【研究主题】，重点关注【时间范围】及相关顶会顶刊。优先实际使用 Google Scholar，并结合已连接的 Consensus 和官方论文目录补检。某个入口不可用时，继续从其他来源获取论文标题和摘要，按研究对象、问题和方法筛选真正相关的文献。
+
+优先采用正式发表版本；同一工作的 arXiv 与正式版本合并为一条，以正式出版信息引用。尚未正式发表的预印本，结合领域、论文年龄和可核实的引用量判断是否进入核心参考；低引用的新稿单列为前沿线索。
+
+输出研究概述、核心参考、前沿线索及简短检索记录。逐篇说明相关性、发表状态、原始来源和实际阅读范围；近期论文区分首次公开、正式发表与版本更新。
+```
+
+</details>
+
+## 检索流程
+
+**明确问题 → Scholar 优先检索 → 多来源获取摘要 → 筛选相关性 → 核对正式版本 → 分类交付**
+
+默认采用短查询，逐个场所设置出版物和年份条件，再汇总去重。Google Scholar、官方论文集与 Consensus 各按实际支持的参数使用；一个入口不可用时继续从其他来源获取标题、摘要和出版信息。
+
+“最近几个月”未指定月数时采用最近三个日历月；背景摸底覆盖前两个年度及本年度。按执行当天计算窗口，逐篇区分首次公开、正式发表和旧稿更新。
+
+### 五组目标会议与期刊
+
+| 分组 | 初始目标 |
+| --- | --- |
+| 安全四大 | ACM CCS、USENIX Security、IEEE S&P、NDSS |
+| AI | ICLR、NeurIPS、ICML |
+| 计算机视觉 | CVPR、ICCV、ECCV |
+| 其他重点会议 | AAAI、IJCAI、ACL、ACM Multimedia |
+| 重点期刊 | IEEE TIFS、TDSC、TPAMI |
+
+按课题选择相关场所，也可自行指定其他会议期刊。出版物名称、短查询和实验组合见 [检索指南](references/search-guide.md)；这些分组是检索起点，会议等级按需要另查当前目录。
+
+## 你会得到什么
+
+| 输出 | 内容 |
+| --- | --- |
+| 研究概述 | 主要技术路线、近期变化、建议优先阅读的工作及依据 |
+| 核心参考 | 正式成果优先，逐篇说明相关性、发表状态、版本关系、来源与阅读范围 |
+| 前沿线索 | 高度相关的新预印本及尚未满足核心参考条件的工作，保留日期与引用依据 |
+| 背景与待核验条目 | 经典方法、能力评测背景，以及仍缺摘要或发表证据的候选，按需要单列 |
+| 简短检索记录 | 实际入口、查询、筛选条件和会影响结论的信息缺口 |
+
+摘要足够支持初筛时即可纳入，并标注“仅摘要”；只有实际读过全文才报告相应细节。预印本进入核心参考时，结合领域、公开时长和可核实的引用影响判断，不使用统一引用数门槛。默认交付分类索引，需要时再导出 BibTeX 或 RIS。
 
 ## 配合 Consensus
 
@@ -55,75 +129,14 @@ codex mcp add consensus --url https://mcp.consensus.app/mcp
 codex mcp login consensus
 ```
 
-在浏览器中完成账户登录与授权，随后在 Codex 中确认工具可用；如果当前会话尚未加载，重新打开会话。技能使用连接后实际提供的参数与返回字段，正式发表信息仍回到出版记录核对。Consensus 为可选入口，未连接时也可使用其他搜索工具；安装本技能不会自动开通付费服务。
+在浏览器完成账户授权后，确认工具已在 Codex 中加载。检索时使用工具实际提供的参数，正式发表信息回到出版记录核对。未连接 Consensus 也可以使用本技能；安装技能不会自动开通付费服务。
 
-## 使用示例
+## 文档与贡献
 
-只生成组合：
+- [SKILL.md](SKILL.md)：技能流程与交付规则。
+- [检索指南](references/search-guide.md)：五组场所、查询模板、公众号线索、分类格式与完整 Prompt。
+- [agents/openai.yaml](agents/openai.yaml)：中文界面信息与自动调用设置。
+- [docs/](docs/)：独立的检索案例与实测记录。
+- [贡献指南](CONTRIBUTING.md)：通过 Issue 或 Pull Request 补充场所、查询方法和有来源的案例。
 
-```text
-$frontier-literature-search 为“多模态大模型隐私泄露”生成安全四大与 AI 三大会的检索组合，分别给出 Scholar 和普通联网搜索版本，不执行检索。
-```
-
-搜索最近三个月：
-
-```text
-$frontier-literature-search 检索最近三个月视觉语言模型隐私泄露的研究。优先尝试 Google Scholar，结合已连接的 Consensus 和官方论文集，阅读摘要筛选相关工作，优先引用正式版本。输出核心参考与前沿线索，核实首次公开日期、发表状态，并给出原始来源。
-```
-
-整理已有论文：
-
-```text
-$frontier-literature-search 仅整理我提供的论文列表，按技术路线分类，核对发表状态并合并预印本与正式版本，不扩展新论文检索。
-```
-
-需要其他时间范围、会议或语言时，直接写进请求。
-
-可复制的完整提示词：
-
-```text
-使用 $frontier-literature-search 检索【研究主题】，重点关注【时间范围】及相关顶会顶刊。优先实际使用 Google Scholar，并结合已连接的 Consensus 和官方论文目录补检。某个入口不可用时，继续从其他来源获取论文标题和摘要，按研究对象、问题和方法筛选真正相关的文献。
-
-优先采用正式发表版本；同一工作的 arXiv 与正式版本合并为一条，以正式出版信息引用。尚未正式发表的预印本，结合领域、论文年龄和可核实的引用量判断是否进入核心参考；低引用的新稿单列为前沿线索。
-
-输出研究概述、核心参考、前沿线索及简短检索记录。逐篇说明相关性、发表状态、原始来源和实际阅读范围；近期论文区分首次公开、正式发表与版本更新。
-```
-
-## 检索流程与输出
-
-研究问题 → Scholar 优先检索 → 多来源获取摘要 → 相关性筛选 → 正式版本核对 → 核心参考与前沿线索。
-
-| 输出 | 内容 |
-| --- | --- |
-| 研究现状 | 技术路线、近期变化、优先阅读建议及依据 |
-| 核心参考 | 正式成果优先，列出摘要筛选理由、版本关系、来源与阅读范围；预印本另附引用影响依据 |
-| 前沿线索 | 高度相关的新预印本与尚未满足核心参考条件的工作，保留日期与发表状态 |
-| 检索记录 | 实际执行的查询、工具、时间范围、覆盖场所和未核实信息 |
-
-五组会议期刊和查询模板见 [search-guide.md](references/search-guide.md)。这些分组是检索起点，不等于实时核验后的 CCF 等级目录。
-
-## 用在这些研究任务中
-
-从一个研究问题出发，完成关键词设计、目标场所筛选、近期论文发现和分类整理，为阅读、选题和写作准备可追溯的文献材料。
-
-- **开启新方向**：梳理核心概念与技术路线，建立首批阅读清单。
-- **追踪前沿进展**：按指定月份、会议或期刊检索近期工作，把新论文加入已有研究地图。
-- **准备组会与开题**：按研究问题组织代表性论文，整理方法之间的联系与差异。
-- **组织 Related Work**：核对发表信息、合并论文版本，按技术路线形成可用于写作的分类索引。
-
-## 仓库结构
-
-```text
-SKILL.md                         技能入口
-agents/openai.yaml               界面信息与自动调用设置
-references/search-guide.md      场所清单、组合模板与记录格式
-README.md / README.en.md         中英文使用说明
-CONTRIBUTING.md                  贡献方式
-LICENSE                         MIT 许可证
-```
-
-## 贡献与许可
-
-欢迎通过 Issue 或 Pull Request 补充有原始证据的查询方法、场所名称和检索案例。提交方法见 [CONTRIBUTING.md](CONTRIBUTING.md)。
-
-本仓库以 [MIT License](LICENSE) 开源。论文、出版方内容和公众号文章仍适用各自的许可；仓库中的链接不改变其版权，也不代表相关机构为本项目背书。
+技能指令以中文编写，可要求用英文输出。本项目采用 [MIT License](LICENSE)；链接中的论文及第三方内容仍适用各自的许可。

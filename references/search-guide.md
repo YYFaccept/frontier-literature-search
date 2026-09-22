@@ -56,7 +56,7 @@
 | 出版物 / return articles published in | USENIX Security（每次一个场所，按结果尝试全称或短名） |
 | 日期 / return articles dated between | 当前年份减 2 至当前年份；具体截至日另记在检索记录中 |
 
-先检查页面是否实际应用字段。过多条件会减少召回；无结果时先放宽出版物或短语，再按论文标题和官方条目核对，不把出版物筛选当作完整收录保证。
+先检查页面是否实际应用字段，并清除上一轮遗留的题名、完整字句、出版物或年份条件。过多条件会减少召回；无结果时先放宽出版物或短语，再按论文标题和官方条目核对，不把出版物筛选当作完整收录保证。题名检索未命中时记录具体查询与条件，继续通过原始论文页补检，不直接判断 Scholar 尚未收录。
 
 根据需要用年份限制保持相关性排序，再切换按日期排序补查新结果。“被引用”和“相关文章”适合从锚点扩展；引用量用于判断预印本是否进入核心参考，不能替代近期线索检索。
 
@@ -111,6 +111,17 @@ CV 三大会限定式：
 | 多场所 `OR` | 分别执行两个单场所查询后合并的论文清单 | 各场所已知相关论文是否仍被纳入，有无其他场所误入 |
 
 能提交查询或返回结果本身不证明过滤有效；单场所可用也不证明复杂 OR 嵌套有效。结果不足以辨别效果时写“未能确认”，保留默认高级检索路径。无需为每次文献任务重测所有实验表达式。
+
+#### 页面实测示例（2026-09-22）
+
+通过本地 Codex 内置浏览器实际操作 Scholar，高级检索填写所有字词 `vision language models membership inference`、完整字句 `vision language`、出版物 `USENIX Security`、年份 2025–2025。页面返回七篇 USENIX Security 2025 论文，包括已由官方条目核实的 *Membership Inference Attacks Against Vision-Language Models*。
+
+- 改用 `vision language models membership inference "vision language" source:"USENIX Security"`，得到相同七篇，排序略有不同；仅支持这个名称和条件下的观察。
+- 在完整字句和场所条件前各加 `+`，七篇及排序不变，未能辨别 `+` 的独立作用。
+- 将场所改为 `(source:"USENIX Security" OR source:"Findings of the Association for Computational Linguistics")`，保留相同七篇。Findings 单场所对照无结果，因此未验证两个非空场所集合能否正确合并；五组长模板仍为实验示例。
+- 七篇中有一篇研究在线社区与用药安全，官方摘要与 VLM 隐私课题无关，应排除。场所过滤不能代替摘要筛选。
+
+另以 `"vision language" geolocation privacy`、2026–2026 条件检索，首页实际出现 GeoShield 和 GeoAgent。原始页面分别确认：GeoShield 于 2026-03-14 正式发表在 AAAI；GeoAgent 的 arXiv v1 为 2026-08-30，是位置推断评测线索。对 2026-09-18 的 *Hiding in Plain Sight: A Diffusion-based Mitigation of Geolocation Privacy Leakage in Vision-Language Models*，完整题名加 2026–2026 条件未命中，仍可通过 arXiv 原始摘要补充。最近几天的新稿需要多来源覆盖，不能将其他来源命中写成 Scholar 命中。
 
 ### 已核实的官方依据
 
