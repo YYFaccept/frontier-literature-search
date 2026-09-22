@@ -81,6 +81,16 @@
 
 需要用户重启 Codex 桌面应用，在“设置 → Computer Use”检查 Chrome 连接及相应浏览器配置，再通过 `@Chrome` 或标签页关联任务后测试。[官方浏览器连接说明](https://learn.chatgpt.com/docs/chrome-extension#troubleshooting)。当前证据不能进一步确定是扩展、配置还是桌面服务的问题。
 
+### 同日后续：重连与指定标签页仍受阻
+
+用户确认更新 Chrome 连接后，实际重试浏览器枚举、重置控制会话及直接打开 Chrome 学术页面，仍返回 `nodeRepl.fetch request failed`。用户随后发送明确的 Scholar 标签页关联；按完整关联调用 `getTab` 仍失败。
+
+进一步检查桌面端近期日志，得到更具体的失败：`[browser-use-iab-api]` 的 `getInfo` 返回 `No ChatGPT browser route is available for browser session …`。本地时间 17:56–17:59 连续出现该错误。日志同时有扩展已安装、工具就绪及 Chrome 元数据交换记录。因此，已定位到当前任务的浏览器会话路由缺失；不能再只笼统归因于 Chrome 未连接。
+
+尝试在当前任务显示 Scholar 浏览器面板，应用先返回等待显示；用户确认面板出现后，再次连接原 Chrome 标签页仍失败。改用关联中的明确浏览器及标签页 ID 后，工具返回 `Browser is not available`。上述恢复尝试均未读取到页面，未执行 Scholar 查询或过滤实验。
+
+接下来按[官方故障处理说明](https://learn.chatgpt.com/docs/chrome-extension#troubleshooting)，在新任务中重新关联同一标签页，以尝试清除任务专属连接状态。这是待执行的恢复步骤，不是已验证修复；不要求用户继续重复已经完成的扩展设置。未公开包含账户上下文的完整日志或标签页会话标识。
+
 ## 对技能的修正
 
 - 将工具连接、网页访问、认证及响应解析分开处理，避免无效重复登录或更换关键词。
