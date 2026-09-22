@@ -57,6 +57,8 @@ codex mcp login consensus
 
 在浏览器中完成账户登录与授权，随后在 Codex 中确认工具可用；如果当前会话尚未加载，重新打开会话。技能使用连接后实际提供的参数与返回字段，正式发表信息仍回到出版记录核对。Consensus 为可选入口，未连接时也可使用其他搜索工具；安装本技能不会自动开通付费服务。
 
+连接方式与适用版本的处理说明见[连接指南](references/troubleshooting.md)。
+
 ## 使用示例
 
 只生成组合：
@@ -117,6 +119,7 @@ $frontier-literature-search 仅整理我提供的论文列表，按技术路线�
 SKILL.md                         技能入口
 agents/openai.yaml               界面信息与自动调用设置
 references/search-guide.md      场所清单、组合模板与记录格式
+references/troubleshooting.md   按需读取的连接排障说明
 README.md / README.en.md         中英文使用说明
 CONTRIBUTING.md                  贡献方式
 LICENSE                         MIT 许可证
