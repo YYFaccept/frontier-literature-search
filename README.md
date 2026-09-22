@@ -1,6 +1,6 @@
 # 前沿文献检索 · Frontier Literature Search
 
-[English](README.en.md) · [技能指令](SKILL.md) · [检索模板](references/search-guide.md) · [测试记录](docs/validation-2026-09-22.md)
+[English](README.en.md) · [技能指令](SKILL.md) · [检索模板](references/search-guide.md)
 
 一个用于 Codex 的文献检索技能：生成顶会顶刊查询组合，查找近期研究，核实论文日期与发表状态，再按技术路线整理结果。
 
@@ -78,11 +78,14 @@ $frontier-literature-search 仅整理我提供的论文列表，按技术路线�
 
 五组会议期刊和查询模板见 [search-guide.md](references/search-guide.md)。这些分组是检索起点，不等于实时核验后的 CCF 等级目录。
 
-## 已验证的范围
+## 用在这些研究任务中
 
-[2026-09-22 的小规模检索记录](docs/validation-2026-09-22.md)包含实际查询、四篇近期 arXiv 论文及逐篇日期证据。检索窗口为 2026-06-22 至 2026-09-22，最新稿件的首次 arXiv 提交日期为 2026-09-18。
+从一个研究问题出发，完成关键词设计、目标场所筛选、近期论文发现和分类整理，为阅读、选题和写作准备可追溯的文献材料。
 
-该记录验证了发现近期公开论文的路径，没有验证全领域召回率。Scholar 的 `source:`、`+` 和多会议 `OR` 组合仍是待验证模板；作者自报接收与会议方确认在记录中分开说明。测试记录保留当时的事实，重新执行应使用新的截止日期和来源状态。
+- **开启新方向**：梳理核心概念与技术路线，建立首批阅读清单。
+- **追踪前沿进展**：按指定月份、会议或期刊检索近期工作，把新论文加入已有研究地图。
+- **准备组会与开题**：按研究问题组织代表性论文，整理方法之间的联系与差异。
+- **组织 Related Work**：核对发表信息、合并论文版本，按技术路线形成可用于写作的分类索引。
 
 ## 仓库结构
 
@@ -90,7 +93,6 @@ $frontier-literature-search 仅整理我提供的论文列表，按技术路线�
 SKILL.md                         技能入口
 agents/openai.yaml               界面信息与自动调用设置
 references/search-guide.md      场所清单、组合模板与记录格式
-docs/validation-2026-09-22.md    带日期的实际检索记录
 README.md / README.en.md         中英文使用说明
 CONTRIBUTING.md                  贡献方式
 LICENSE                         MIT 许可证

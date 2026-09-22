@@ -57,13 +57,16 @@ The default recent window is recalculated from the execution date. A paper's arX
 $frontier-literature-search Classify these papers on multimodal-model privacy by technical route, venue, year, publication status, and reading status. Do not start a new search unless a supplied record needs source verification.
 ```
 
-## Search tools and verification
+## Put it to work
 
-The skill can use available web, AI-search, academic-search, API, and official-proceedings tools. Google Scholar and screen control are optional paths. Scholar-specific operators such as `source:` are retained as copyable examples, but they are not claimed to be tested unless a real Scholar query was submitted and its results observed.
+Start with a research question and turn it into keywords, relevant venues, recent papers, and an organized reading list with traceable sources.
 
-Publication claims are checked against the actual paper, proceedings, publisher, journal, acceptance list, or preprint record. The skill keeps formal publication, acceptance, preprint, and unresolved leads separate. It also keeps first public release separate from a later version update or formal publication.
+- **Explore a new direction:** map key concepts and technical approaches, then build an initial reading list.
+- **Follow recent advances:** search a chosen time window, conference, or journal and add new work to your literature map.
+- **Prepare a research meeting or proposal:** organize representative papers around research questions and compare their approaches.
+- **Build related work:** verify publication details, consolidate paper versions, and group references into a structure for writing.
 
-The 2026-09-22 validation searched a three-month window from 2026-06-22 through 2026-09-22 and found four related arXiv submissions with complete version-history evidence. It also checked current official ICML 2026, USENIX Security 2026, and ECCV 2026 pages. That test demonstrates the recent-preprint path; it does not claim exhaustive coverage, prove Scholar query semantics, or establish that every conference had a matching paper. See [`docs/validation-2026-09-22.md`](docs/validation-2026-09-22.md).
+Use the search tools available in your environment. Google Scholar page interaction and screen control are optional.
 
 ## Contributing
 
