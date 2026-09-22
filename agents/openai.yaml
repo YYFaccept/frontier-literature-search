@@ -1,6 +1,6 @@
 interface:
   display_name: "前沿文献检索"
-  short_description: "生成顶会顶刊检索组合，搜索近期论文并核实日期、发表状态与分类"
-  default_prompt: "使用 $frontier-literature-search 生成视觉语言模型隐私泄露的顶会顶刊检索组合，用可用搜索工具查最近三个月的论文，核实首次公开日期与发表状态，并整理分类论文表和实际检索记录。"
+  short_description: "Scholar 优先检索，结合 Consensus 筛选摘要、核对正式版本并整理参考"
+  default_prompt: "使用 $frontier-literature-search 检索最近三个月视觉语言模型隐私泄露与保护的论文，优先实际使用 Google Scholar 并结合已连接的 Consensus，按摘要筛选并优先引用正式版本，分列核心参考、前沿线索及简短检索记录。"
 policy:
   allow_implicit_invocation: true
