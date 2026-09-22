@@ -122,14 +122,16 @@ $frontier-literature-search 仅整理我提供的论文列表，按技术路线�
 
 ## 配合 Consensus
 
-Consensus 可补充论文标题、摘要和引用信息。按[官方 MCP 文档](https://docs.consensus.app/consensus-mcp)连接到 Codex：
+Consensus 可补充论文标题、摘要和引用信息。**已经连接时直接使用，跳过下面的安装和登录命令。** 仅首次接入时，按[官方 MCP 文档](https://docs.consensus.app/consensus-mcp)连接到 Codex：
 
 ```sh
 codex mcp add consensus --url https://mcp.consensus.app/mcp
 codex mcp login consensus
 ```
 
-在浏览器完成账户授权后，确认工具已在 Codex 中加载。检索时使用工具实际提供的参数，正式发表信息回到出版记录核对。未连接 Consensus 也可以使用本技能；安装技能不会自动开通付费服务。
+首次完成账户授权后，后续检索复用现有连接，由客户端管理凭据与刷新。技能先调用已加载的工具；确需重新认证时只保留一个授权流程，在已授权范围内处理普通确认按钮，需要用户输入或新增权限时再请求协助。
+
+检索时使用工具实际提供的参数，正式发表信息回到出版记录核对。未连接 Consensus 也可以使用本技能；安装技能不会自动开通付费服务。
 
 ## 文档与贡献
 

@@ -86,14 +86,16 @@ An abstract can support initial screening without downloading the full paper; ea
 
 ## Optional: use Consensus
 
-Consensus is optional. When it is connected, the skill can use its returned paper data alongside Scholar and original publication records. Follow the [official Consensus MCP instructions](https://docs.consensus.app/consensus-mcp):
+Consensus is optional. **If it is already connected, use that connection and skip the setup and login commands below.** For an initial connection, follow the [official Consensus MCP instructions](https://docs.consensus.app/consensus-mcp):
 
 ```sh
 codex mcp add consensus --url https://mcp.consensus.app/mcp
 codex mcp login consensus
 ```
 
-Complete account authorization in the browser and confirm that the tools are loaded in Codex. Searches use the tool's actual parameters, and publication details are checked against original records. Installing the skill does not activate a paid service.
+After initial authorization, searches reuse the existing connection and let the client manage credentials and refresh. The skill calls loaded tools first. If authentication is actually required, it keeps one pending flow, handles ordinary confirmation buttons within the user's existing authorization, and asks for help only when user input or additional permissions are needed. Current tool confirmation requirements still apply.
+
+Searches use the tool's actual parameters, and publication details are checked against original records. Installing the skill does not activate a paid service.
 
 <details>
 <summary>Reusable research prompt</summary>
